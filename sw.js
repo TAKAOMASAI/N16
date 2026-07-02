@@ -1,5 +1,5 @@
 // N→16 Service Worker — HTMLはネットワーク優先（常に最新）、他はキャッシュ優先
-const CACHE = 'filmdev-v26';
+const CACHE = 'filmdev-v27';
 const ASSETS = [
   './',
   './index.html',

@@ -21,7 +21,7 @@
     font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Segoe UI",Roboto,sans-serif;overscroll-behavior:none}
   header{padding:13px 16px;display:flex;align-items:center;gap:10px;
     border-bottom:3px double var(--ink);position:sticky;top:0;background:var(--bg);z-index:10}
-  header .logo{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:.5px}
+  header .logo{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:.5px;cursor:pointer}
   header .logo b{color:var(--accent)}
   header .logo .arrow{display:inline-block;transform:translateY(-1px);color:var(--accent2)}
   header .step{font-size:11px;font-weight:700;color:var(--panel);margin-left:auto;font-family:var(--serif);
@@ -80,7 +80,7 @@
 </head>
 <body>
 <header>
-  <div class="logo">N<span class="arrow">→</span><b>16</b> <span style="font-size:13px">🎞</span> <span style="font-size:9px;color:var(--muted);font-weight:600">v26</span></div>
+  <div class="logo">N<span class="arrow">→</span><b>16</b> <span style="font-size:13px">🎞</span> <span style="font-size:9px;color:var(--muted);font-weight:600">v27</span></div>
   <div class="step" id="stepLabel">① 読み込み</div>
 </header>
 
@@ -663,6 +663,7 @@ function flash(t){badge.textContent=t;badge.classList.remove('hidden');clearTime
 function cl(v){return v<0?0:v>255?255:v;}
 function clamp(v,a,b){return v<a?a:v>b?b:v;}
 
+$('.logo').onclick=()=>{pickMode=false;goStage('load');resetCamUI();};   // ロゴタップでホームへ
 window.onerror=(m,s,l)=>{try{flash('⚠ エラー: '+m+' L'+l);}catch(e){}};   // ベータ用：例外を可視化
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
 </script>
