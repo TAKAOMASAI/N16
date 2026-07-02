@@ -71,6 +71,8 @@
   .switch.on i{left:23px}
   .foot{color:var(--muted);font-size:12px;font-weight:600;margin:15px 4px;line-height:1.8}
   #hero{display:flex;align-items:center;justify-content:center;padding:44px 10px 16px}
+  .tips{margin-top:14px;padding:10px 14px;background:var(--panel2);border:1px solid var(--line);border-radius:6px}
+  .tips summary{font-size:13px;font-weight:700;font-family:var(--serif);cursor:pointer;color:var(--muted)}
   .hidden{display:none!important}
   .badge{position:absolute;top:10px;left:10px;background:var(--gold);color:#F9F2E2;font-size:11px;
     font-weight:700;font-family:var(--serif);padding:5px 11px;border-radius:3px;letter-spacing:.5px}
@@ -78,7 +80,7 @@
 </head>
 <body>
 <header>
-  <div class="logo">N<span class="arrow">→</span><b>16</b> <span style="font-size:13px">🎞</span> <span style="font-size:9px;color:var(--muted);font-weight:600">v25</span></div>
+  <div class="logo">N<span class="arrow">→</span><b>16</b> <span style="font-size:13px">🎞</span> <span style="font-size:9px;color:var(--muted);font-weight:600">v26</span></div>
   <div class="step" id="stepLabel">① 読み込み</div>
 </header>
 
@@ -108,23 +110,19 @@
   </div>
 
   <div id="uiLoad">
-    <div class="panel" style="margin-top:12px">
-      <h3>きれいに撮るコツ</h3>
-      <p class="foot" style="margin:0">
-        📷 サクッと＝「カメラ」／こだわる＝標準カメラで撮って「写真を選ぶ」<br>
-        　※ 標準カメラなら露出調整・AEロック・48MPが使える<br>
-        💡 光源のおすすめ<br>
-        　① LEDトレース台（A5・2千円前後）<br>
-        　② PC/iPadの白画面 ＋ ガラス等でフィルムを2〜3cm浮かせる（モアレが消える）<br>
-        　③ 明るい窓＋トレーシングペーパー<br>
-        🎯 ピントはフィルム面に。黒い紙にレンズ穴を開けてかざすと映り込み防止<br>
-        🔒 すべて端末内で処理。画像は外部に送信されません
-      </p>
-    </div>
     <div class="row">
-      <button id="btnCam" class="primary">📷 カメラ（高解像度）</button>
-      <button id="btnFile">🖼 写真を選ぶ</button>
+      <button id="btnCam" class="primary">📷 撮る</button>
+      <button id="btnFile">🖼 選ぶ</button>
     </div>
+    <details class="tips">
+      <summary>💡 きれいに撮るコツ</summary>
+      <p class="foot" style="margin:8px 0 0">
+        ・こだわる時は標準カメラで撮って「選ぶ」（露出調整・48MPが使える）<br>
+        ・光源：LEDトレース台 ／ PCの白画面＋ガラスで2〜3cm浮かせる（モアレ防止）<br>
+        ・ピントはフィルム面に。黒い紙にレンズ穴で映り込み防止<br>
+        ・すべて端末内で処理。画像は外部に送信されません
+      </p>
+    </details>
     <input id="fileInput" type="file" accept="image/*" class="hidden">
     <input id="capInput" type="file" accept="image/*" capture="environment" class="hidden">
   </div>
@@ -144,19 +142,19 @@
         <button data-o="port">縦</button>
       </div>
       <div class="row" style="margin-top:0">
-        <button id="btnRotL" class="ghost">↺ 回転</button>
-        <button id="btnRotR" class="ghost">回転 ↻</button>
-        <button id="btnAutoCrop" class="primary">✨ 自動トリミング</button>
+        <button id="btnRotL" class="ghost">↺</button>
+        <button id="btnRotR" class="ghost">↻</button>
+        <button id="btnAutoCrop" class="primary">✨ 自動</button>
       </div>
       <div class="ctl" style="margin-top:12px">
         <label><span>傾き</span><b id="vTilt">0.0°</b></label>
         <input type="range" id="tiltR" min="-50" max="50" value="0">
       </div>
       <div class="row" style="margin-top:0">
-        <button id="btnPickBase" class="ghost">🎯 ベース指定（コマ外のネガ地色をタップ）</button>
+        <button id="btnPickBase" class="ghost">🎯 ベース指定</button>
       </div>
       <div class="toggle" style="margin-top:12px">
-        <span>プレビューをポジ表示</span>
+        <span>ポジ表示</span>
         <div class="switch on" id="tgPreview"><i></i></div>
       </div>
     </div>
@@ -164,7 +162,6 @@
       <button id="btnBackLoad" class="ghost">← 戻る</button>
       <button id="btnToDev" class="primary">現像へ →</button>
     </div>
-    <p class="foot">枠の四隅をドラッグしてコマに合わせます。フォーマットを選ぶと縦横比が固定（自由でロック解除）。</p>
   </div>
 
   <div id="uiDev" class="hidden">
@@ -198,7 +195,7 @@
 
     <div class="panel">
       <h3>基本</h3>
-      <div class="toggle"><span>モアレ・粒状を軽減</span><div class="switch" id="tgNR"><i></i></div></div>
+      <div class="toggle"><span>ざらつき軽減</span><div class="switch" id="tgNR"><i></i></div></div>
       <div class="ctl"><label><span>露出</span><b id="vExp">0</b></label><input type="range" id="exp" min="-100" max="100" value="0"></div>
       <div class="ctl"><label><span>コントラスト</span><b id="vCon">0</b></label><input type="range" id="con" min="-100" max="100" value="0"></div>
       <div class="ctl"><label><span>彩度</span><b id="vSat">0</b></label><input type="range" id="sat" min="-100" max="100" value="0"></div>
@@ -655,7 +652,7 @@ function goStage(s){
   cropCv.classList.toggle('hidden',s!=='crop');
   devCv.classList.toggle('hidden',s!=='dev');
   hint.classList.toggle('hidden',s!=='load');
-  $('#stepLabel').textContent={load:'① 読み込み',crop:'② トリミング',dev:'③ 色味調整'}[s];
+  $('#stepLabel').textContent={load:'① スキャン',crop:'② 切り抜き',dev:'③ 現像'}[s];
   badge.classList.add('hidden');
   stage.classList.toggle('compact',s!=='load');
   stage.classList.toggle('hidden',s==='load');            // 読み込み画面はロゴ表示
